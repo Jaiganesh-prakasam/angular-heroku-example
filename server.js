@@ -1,14 +1,9 @@
-const express = require('express');
-const path = require('path');
+const path = require("path");
+const express = require("express");
 const app = express();
-
-// Serve static files....
-app.use(express.static(__dirname + '/src'));
-
-// Send all requests to index.html
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/src/index.html'));
+app.use(express.static(__dirname + '/angular-build'));
+app.get('/*', function(req,res){
+res.sendFile(path.join(__dirname, 'angular-build', 'index.html'))
 });
-
-// default Heroku PORT
-app.listen(process.env.PORT || 3000);
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
